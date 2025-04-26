@@ -1,6 +1,6 @@
-use std::{ops::Div, borrow::Borrow};
+// use std::{ops::Div, borrow::Borrow};
 
-use bevy::{prelude::*, window::PrimaryWindow, sprite::{MaterialMesh2dBundle, Material2d}, render::{render_resource::PrimitiveTopology, mesh::Indices}};
+use bevy::{prelude::*, window::PrimaryWindow, sprite::MaterialMesh2dBundle, render::{render_resource::PrimitiveTopology, mesh::Indices}};
 use bevy_inspector_egui::prelude::*;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use bevy_inspector_egui::quick::ResourceInspectorPlugin;
@@ -41,6 +41,7 @@ pub struct Configuration {
     repulsion: f32,
     #[inspector(min = 1.0, max = 100.0)]
     direction: f32,
+    #[inspector(min = 1.0, max = 1000.0)]
     closeness: f32,
 }
 
