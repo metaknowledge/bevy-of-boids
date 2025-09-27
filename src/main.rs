@@ -85,18 +85,6 @@ pub fn update_boids(
   mut boids_query: Query<(&mut Transform, &mut Velocity), With<Boid>>,
   config_asset: Res<Configuration>,
 ) {
-  // for (entity, mut transform, mut velocity) in boids_query.iter_mut() {
-  //   let mut center_of_mass = Vec3::splat(0.0);
-  //   for (target_entity, target_transform, _) in boids_query.iter_mut() {
-  //     if entity != target_entity {
-  //       center_of_mass += target_transform.translation;
-  //     }
-  //   }
-  //   center_of_mass = center_of_mass.div((NUMBER_OF_BOIDS - 1) as f32);
-
-  //   velocity.vel += center_of_mass;
-  //   transform.translation += velocity.vel;
-  // }
   let mut combonations = boids_query.iter_combinations_mut();
   if config_asset.attraction == 0.0 {
     return;
