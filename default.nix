@@ -2,7 +2,7 @@
 with import <nixpkgs> {};
 
 stdenv.mkDerivation {
-  name = "Straight Line";
+  name = "Bevy of Boids";
   src = ./.;
   system = "x86_64-linux";
   

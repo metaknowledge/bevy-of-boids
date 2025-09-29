@@ -1,5 +1,3 @@
-// use std::{ops::Div, borrow::Borrow};
-
 use bevy::{prelude::*, window::PrimaryWindow, sprite::MaterialMesh2dBundle, render::{render_resource::PrimitiveTopology, mesh::Indices}};
 use bevy_inspector_egui::prelude::*;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
@@ -12,9 +10,9 @@ fn main() {
   App::new()
     .add_plugins(DefaultPlugins)
     .add_plugin(WorldInspectorPlugin::new())
-    .init_resource::<Configuration>() // `ResourceInspectorPlugin` won't initialize the resource
-    .register_type::<Configuration>() // you need to register your type to display it
-    .add_plugin(ResourceInspectorPlugin::<Configuration>::default())// also works with built-in resources, as long as they implement `Reflect`
+    .init_resource::<Configuration>() 
+    .register_type::<Configuration>()
+    .add_plugin(ResourceInspectorPlugin::<Configuration>::default())
     .add_startup_system(spawn_camera)
     .add_startup_system(spawn_boids)
     .add_system(update_boids)
@@ -31,7 +29,7 @@ pub struct Velocity{
   pub vel: Vec3
 }
 
-// `InspectorOptions` are completely optional
+
 #[derive(Reflect, Resource, Default, InspectorOptions)]
 #[reflect(Resource, InspectorOptions)]
 pub struct Configuration {
@@ -122,7 +120,6 @@ pub fn push_boids_away_from_walls(
   let window = window_query.get_single().unwrap();
 
   for (transform, mut velocity) in boids_query.iter_mut() {
-    // println!("boids: {}", velocity.vel.y);
     if transform.translation.y < 50.0 {
       velocity.vel.y += 0.5;
     } else if transform.translation.y > window.height() - 50.0 {
@@ -154,7 +151,6 @@ pub fn confine_boids(
       transform.translation.y = 0.0;
     } else if transform.translation.y > window.height() {
       transform.translation.y = window.height();
-      // println!("{}", vel.vel.y);
     }
   }
 }
